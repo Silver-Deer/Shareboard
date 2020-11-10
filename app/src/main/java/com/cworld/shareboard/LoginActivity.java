@@ -64,13 +64,12 @@ public class LoginActivity extends AppCompatActivity {
                         if(response.code() == 200) {
                             RetroFitLogin loginResponse = response.body();
 
-                            assert loginResponse != null;
                             if(loginResponse.getResult().equals("1")) {
                                 Log.e("login", loginResponse.string());
                                 SharedPreferences sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("token", loginResponse.getToken());
-                                editor.apply();
+                                editor.commit();
 
 
                                 Intent intent = new Intent(LoginActivity.this, ClipBoardActivity.class);

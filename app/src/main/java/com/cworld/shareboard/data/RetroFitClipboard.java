@@ -1,39 +1,45 @@
 package com.cworld.shareboard.data;
 
+import java.util.List;
+
 public class RetroFitClipboard {
-    int boardId;
-    String board;
-    int deviceId;
-    String date;
-    String deviceName;
-    String userId;
-    String typeName;
+    public List<ClipItem> result;
 
-    public int getBoardId() {
-        return boardId;
-    }
+    class ClipItem {
+        int boardId;
+        String board;
+        int deviceId;
+        String date;
+        String deviceName;
+        String userId;
+        String typeName;
 
-    public String getBoard() {
-        return board;
-    }
+        public int getBoardId() {
+            return boardId;
+        }
 
-    public int getDeviceId() {
-        return deviceId;
-    }
+        public String getBoard() {
+            return board;
+        }
 
-    public String getDate() {
-        return date;
-    }
+        public int getDeviceId() {
+            return deviceId;
+        }
 
-    public String getDeviceName() {
-        return deviceName;
-    }
+        public String getDate() {
+            return date;
+        }
 
-    public String getUserId() {
-        return userId;
-    }
+        public String getDeviceName() {
+            return deviceName;
+        }
 
-    public String getTypeName() {
-        return typeName;
+        public String getUserId() {
+            return userId;
+        }
+
+        public String getTypeName() {
+            return typeName;
+        }
     }
 }

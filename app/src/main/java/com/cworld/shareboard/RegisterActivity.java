@@ -57,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(Call<RetroFitRegister> call, Response<RetroFitRegister> response) {
                         if (response.code() == 200) {
                             RetroFitRegister retroFitRegister = response.body();
-                            assert retroFitRegister != null;
                             if (retroFitRegister.getResult().equals("1")) {
                                 Log.e("Register", "회원가입 성공");
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);

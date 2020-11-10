@@ -7,6 +7,20 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroFitClient {
+//    public static final String Base_URL = "10.80.163.222:8080";
+//
+//    public static RetroFitApi getApiService() {
+//        return (RetroFitApi) getInstance().create(RetroFitApi.class);
+//    }
+//
+//    public static Retrofit getInstance() {
+//        Gson gson = new GsonBuilder().setLenient().create();
+//        return new Retrofit.Builder()
+//                .baseUrl(Base_URL)
+//                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .build();
+//    }
+//
 
     private static RetroFitClient instance;
     private RetroFitApi api;

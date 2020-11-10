@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity"
+    android:padding="60dp"
+    android:gravity="center_horizontal">
+
+    <View
+        android:id="@+id/activity_login_logo"
+        android:layout_margin="50dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/logo_circle"/>
+
+    <EditText
+        android:id="@+id/activity_login_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="아이디" />
+
+
+    <EditText
+        android:id="@+id/activity_login_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호" />
+
+    <Button
+        android:id="@+id/activity_login_button"
+        android:backgroundTint="#808080"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그인" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Forgot Account?"/>
+
+        <Button
+            android:stateListAnimator="@null"
+            android:id="@+id/activity_login_find_account"
+            android:textColor="@color/black"
+            android:backgroundTint="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="find account"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="don't have an account?"/>
+
+    <Button
+        android:stateListAnimator="@null"
+        android:id="@+id/activity_login_sign_in_button"
+        android:textColor="@color/black"
+        android:backgroundTint="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"/>
+
+
+
+</LinearLayout>

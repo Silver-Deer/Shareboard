@@ -43,7 +43,7 @@ public class ClipBoardActivity extends AppCompatActivity {
                     clipList = response.body();
 
                     Toast.makeText(ClipBoardActivity.this
-                            , "클립보드 조회", Toast.LENGTH_SHORT);
+                            , "클립보드 조회", Toast.LENGTH_SHORT).show();
 
                     Log.e("ClipBoard", clipList.get(0).getBoard());
                 }

@@ -22,7 +22,7 @@ public interface RetroFitApi {
     Call<RetroFitRegister> registerRequest(@Body RetroFitRegister retroFitRegister);
 
     @GET("/clipboard")
-    Call<List<RetroFitClipboard>> getClipboard(@Header("Authorization") String token);
+    Call<RetroFitClipboard> getClipboard(@Header("Authorization") String token);
 
     @DELETE("/clipboard")
 

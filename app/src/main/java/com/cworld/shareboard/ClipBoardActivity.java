@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class ClipBoardActivity extends AppCompatActivity {
 
-    List<RetroFitClipboard> clipList;
+    RetroFitClipboard clipList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +34,24 @@ public class ClipBoardActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
         String token = sharedPreferences.getString("token","");
+        Log.i("token", token);
 
         refresh.setOnClickListener(v->{
-            Call<List<RetroFitClipboard>> request = RetroFitClient.getInstance().getApi().getClipboard(token);
-            request.enqueue(new Callback<List<RetroFitClipboard>>() {
+            Call<RetroFitClipboard> request = RetroFitClient.getInstance().getApi().getClipboard(token);
+            request.enqueue(new Callback<RetroFitClipboard>() {
                 @Override
-                public void onResponse(Call<List<RetroFitClipboard>> call, Response<List<RetroFitClipboard>> response) {
+                public void onResponse(Call<RetroFitClipboard> call, Response<RetroFitClipboard> response) {
+                    Log.e("ClipBoard", String.valueOf(response.code()));
                     clipList = response.body();
 
                     Toast.makeText(ClipBoardActivity.this
-                            , "클립보드 조회", Toast.LENGTH_SHORT).show();
+                            , "클립보드 조회 " + clipList.result.size(), Toast.LENGTH_SHORT).show();
 
-                    Log.e("ClipBoard", clipList.get(0).getBoard());
+                    //Log.e("ClipBoard", clipList.get(0).getBoard());
                 }
 
                 @Override
-                public void onFailure(Call<List<RetroFitClipboard>> call, Throwable t) {
+                public void onFailure(Call<RetroFitClipboard> call, Throwable t) {
                     Toast.makeText(ClipBoardActivity.this,
                             t.getMessage(), Toast.LENGTH_SHORT).show();
                 }

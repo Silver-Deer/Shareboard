@@ -5,14 +5,14 @@ import java.util.List;
 public class RetroFitClipboard {
     public List<ClipItem> result;
 
-    class ClipItem {
+    public class ClipItem {
         int boardId;
         String board;
         int deviceId;
         String date;
         String deviceName;
         String userId;
-        String typeName;
+        String deviceType;
 
         public int getBoardId() {
             return boardId;
@@ -38,8 +38,8 @@ public class RetroFitClipboard {
             return userId;
         }
 
-        public String getTypeName() {
-            return typeName;
+        public String getDeviceType() {
+            return deviceType;
         }
     }
 }

@@ -24,7 +24,6 @@ public interface RetroFitApi {
     @GET("/clipboard")
     Call<RetroFitClipboard> getClipboard(@Header("Authorization") String token);
 
-    @DELETE("/clipboard")
 
     @POST("/autologin")
     Call<RetroFitAutoLogin> autoLogin(@Header("Authorization") String token);

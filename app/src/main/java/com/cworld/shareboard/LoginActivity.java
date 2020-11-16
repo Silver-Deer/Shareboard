@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cworld.shareboard.Server.RetroFitClient;
+import com.cworld.shareboard.data.RetroFitAutoLogin;
 import com.cworld.shareboard.data.RetroFitLogin;
 
 import retrofit2.Call;
@@ -23,7 +24,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
         SharedPreferences sharedPreferences = getSharedPreferences("sFile",MODE_PRIVATE);
 
@@ -31,11 +31,31 @@ public class LoginActivity extends AppCompatActivity {
 
         if(!token.equals("")) {
             Log.e("token", token);
-            Intent intent = new Intent(LoginActivity.this, ClipBoardActivity.class);
-            startActivity(intent);
-            finish();
+
+            Call<RetroFitAutoLogin> call = RetroFitClient.getInstance().getApi().autoLogin(token);
+            call.enqueue(new Callback<RetroFitAutoLogin>() {
+                @Override
+                public void onResponse(Call<RetroFitAutoLogin> call, Response<RetroFitAutoLogin> response) {
+                    RetroFitAutoLogin retroFitAutoLogin = response.body();
+                    if(response.code() == 200) {
+                        if(retroFitAutoLogin.getResult().equals("1")) {
+                            Intent intent = new Intent(LoginActivity.this, ClipBoardActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<RetroFitAutoLogin> call, Throwable t) {
+
+                }
+            });
+
+
         }
 
+        setContentView(R.layout.activity_login);
 
         EditText id_et, pw_et;
         Button login;

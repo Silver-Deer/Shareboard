@@ -41,6 +41,10 @@ public class ClipBoardAdapter extends RecyclerView.Adapter<ClipBoardAdapter.Item
         listData.add(data);
     }
 
+    void resetItem() {
+        listData.clear();
+    }
+
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
         private TextView deviceName;

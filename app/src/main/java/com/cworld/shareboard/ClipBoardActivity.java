@@ -65,6 +65,8 @@ public class ClipBoardActivity extends AppCompatActivity {
                     Toast.makeText(ClipBoardActivity.this
                             , "클립보드 조회 " + clipList.result.size(), Toast.LENGTH_SHORT).show();
 
+                    adapter.resetItem();
+
                     for(int position = 0; position < clipList.result.size(); position++) {
                         addItem(clipList.result.get(position).getDeviceName(), clipList.result.get(position).getDeviceType(), clipList.result.get(position).getDate(), clipList.result.get(position).getBoard());
                     }

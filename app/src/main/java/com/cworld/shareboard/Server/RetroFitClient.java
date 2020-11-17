@@ -40,7 +40,4 @@ public class RetroFitClient {
     }
 
     public RetroFitApi getApi() { return api; }
-
-
-
 }

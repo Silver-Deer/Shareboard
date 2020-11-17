@@ -24,10 +24,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ClipBoardActivity extends AppCompatActivity {
-    ClipboardManager clipboardManager;
     RetroFitClipboard clipList;
     private ClipBoardAdapter adapter;
 
+    private ClipboardClickListener clickListener = (content)-> {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("SharedBoard", content.getBoard());
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(this, content.getBoard() + "복사", Toast.LENGTH_SHORT).show();
+
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +55,8 @@ public class ClipBoardActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter = new ClipBoardAdapter(this);
+        adapter = new ClipBoardAdapter(clickListener);
         recyclerView.setAdapter(adapter);
-        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-
 
         Call<RetroFitClipboard> start_request = RetroFitClient.getInstance().getApi().getClipboard(token);
         start_request.enqueue(new Callback<RetroFitClipboard>() {

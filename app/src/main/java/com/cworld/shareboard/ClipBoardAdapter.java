@@ -25,8 +25,11 @@ public class ClipBoardAdapter extends RecyclerView.Adapter<ClipBoardAdapter.Item
 
     private ArrayList<RecyclerClipboard> listData = new ArrayList<>();
     ClipBoardActivity clipBoardActivity;
-    public ClipBoardAdapter(ClipBoardActivity clipBoardActivity) {
-        this.clipBoardActivity = clipBoardActivity;
+
+    private ClipboardClickListener listener;
+
+    public ClipBoardAdapter(ClipboardClickListener listener) {
+        this.listener = listener;
     }
 
 
@@ -40,7 +43,15 @@ public class ClipBoardAdapter extends RecyclerView.Adapter<ClipBoardAdapter.Item
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.onBind(listData.get(position));
+        RecyclerClipboard recyclerClipboard = listData.get(position);
+        holder.deviceName.setText(recyclerClipboard.getDeviceName());
+        holder.deviceType.setText(recyclerClipboard.getDeviceType());
+        holder.boardDate.setText(recyclerClipboard.getDate());
+        holder.board.setText(recyclerClipboard.getBoard());
+
+        holder.itemView.setOnClickListener((v)-> {
+            listener.onClickListener(recyclerClipboard);
+        });
     }
 
     @Override
@@ -70,30 +81,22 @@ public class ClipBoardAdapter extends RecyclerView.Adapter<ClipBoardAdapter.Item
             deviceType = itemView.findViewById(R.id.device_type);
             boardDate = itemView.findViewById(R.id.board_date);
             board = itemView.findViewById(R.id.board);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = getAdapterPosition();
-                    if(pos != RecyclerView.NO_POSITION);
-                    Log.e("ShareBoard",listData.get(pos).getBoard());
-
-                    clipBoardActivity.clipboardManager = (ClipboardManager)clipBoardActivity.getSystemService(CLIPBOARD_SERVICE);
-                    ClipData clipData = ClipData.newPlainText("ShareBoard", board.getText());
-
-                    clipBoardActivity.clipboardManager.setPrimaryClip(clipData);
-
-                    Toast.makeText(clipBoardActivity, board.getText() + " 복사!", Toast.LENGTH_SHORT).show();
-
-                }
-            });
-        }
-
-        void onBind(RecyclerClipboard data) {
-            deviceName.setText(data.getDeviceName());
-            deviceType.setText(data.getDeviceType());
-            boardDate.setText(data.getDate());
-            board.setText(data.getBoard());
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    int pos = getAdapterPosition();
+//                    if(pos != RecyclerView.NO_POSITION);
+//                    Log.e("ShareBoard",listData.get(pos).getBoard());
+//
+//                    clipBoardActivity.clipboardManager = (ClipboardManager)clipBoardActivity.getSystemService(CLIPBOARD_SERVICE);
+//                    ClipData clipData = ClipData.newPlainText("ShareBoard", board.getText());
+//
+//                    clipBoardActivity.clipboardManager.setPrimaryClip(clipData);
+//
+//                    Toast.makeText(clipBoardActivity, board.getText() + " 복사!", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            });
         }
     }
 

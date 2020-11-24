@@ -7,12 +7,28 @@
     android:orientation="vertical"
     tools:context=".ClipBoardActivity">
 
-    <Button
-        android:layout_gravity="center"
-        android:id="@+id/activity_clip_board_refresh"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="불러오기"/>
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/activity_clip_board_refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:text="불러오기" />
+
+
+        <Button
+            android:id="@+id/activity_clipboard_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내보내기"
+            />
+    </LinearLayout>
 
     <View
         android:layout_width="wrap_content"

@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                     RetroFitAutoLogin retroFitAutoLogin = response.body();
                     if(response.code() == 200) {
                         if(retroFitAutoLogin.getResult().equals("1")) {
-                            Intent intent = new Intent(LoginActivity.this, ClipBoardActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, DeviceActivity.class);
                             startActivity(intent);
                             finish();
                         }
@@ -48,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<RetroFitAutoLogin> call, Throwable t) {
-
+                    Toast.makeText(LoginActivity.this,
+                            t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -92,9 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.commit();
 
 
-                                Intent intent = new Intent(LoginActivity.this, ClipBoardActivity.class);
-                                intent.putExtra("id", id);
-                                intent.putExtra("pw", pw);
+                                Intent intent = new Intent(LoginActivity.this, DeviceActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
@@ -106,6 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                         else if (response.code() == 401) {
                             Toast.makeText(LoginActivity.this,
                                         "아이디 또는 비밀번호가 잘못되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Log.d("Login", response.errorBody().toString());
                         }
                     }
 

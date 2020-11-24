@@ -9,6 +9,7 @@ import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.Toast;
@@ -40,9 +41,10 @@ public class ClipBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clip_board);
 
-
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
 
         Button refresh = findViewById(R.id.activity_clip_board_refresh);
+        Button load = findViewById(R.id.activity_clipboard_load);
         Button logout = findViewById(R.id.logout);
 
         SharedPreferences sharedPreferences = getSharedPreferences("sFile", MODE_PRIVATE);
@@ -66,7 +68,7 @@ public class ClipBoardActivity extends AppCompatActivity {
                 clipList = response.body();
 
                 Toast.makeText(ClipBoardActivity.this
-                        , "클립보드 조회 " + clipList.result.size(), Toast.LENGTH_SHORT).show();
+                        , "클립보드 조회 " , Toast.LENGTH_SHORT).show();
 
                 adapter.resetItem();
 
@@ -93,9 +95,8 @@ public class ClipBoardActivity extends AppCompatActivity {
                 public void onResponse(Call<RetroFitClipboard> call, Response<RetroFitClipboard> response) {
                     Log.e("ClipBoard", String.valueOf(response.code()));
                     clipList = response.body();
-
                     Toast.makeText(ClipBoardActivity.this
-                            , "클립보드 조회 " + clipList.result.size(), Toast.LENGTH_SHORT).show();
+                            , "클립보드 조회 ", Toast.LENGTH_SHORT).show();
 
                     adapter.resetItem();
 
@@ -116,6 +117,15 @@ public class ClipBoardActivity extends AppCompatActivity {
             });
         });
 
+        load.setOnClickListener(v->{
+            ClipData clipData = clipboardManager.getPrimaryClip();
+            String clipText = clipData.getItemAt(0).getText().toString();
+            Log.e("ClipData", clipText);
+
+
+
+        });
+
         logout.setOnClickListener(v->{
             Intent intent = new Intent(ClipBoardActivity.this, LoginActivity.class);
             editor.remove("token");
@@ -124,6 +134,8 @@ public class ClipBoardActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+
 
     }
 

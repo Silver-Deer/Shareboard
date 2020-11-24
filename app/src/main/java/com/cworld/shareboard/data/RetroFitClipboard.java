@@ -14,6 +14,8 @@ public class RetroFitClipboard {
         String userId;
         String deviceType;
 
+
+
         public int getBoardId() {
             return boardId;
         }

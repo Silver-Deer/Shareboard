@@ -3,7 +3,7 @@
     package="com.cworld.shareboard">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <application
 
         android:allowBackup="true"
@@ -26,6 +26,10 @@
         <activity android:name=".ClipBoardActivity">
 
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
